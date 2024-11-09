@@ -1,0 +1,55 @@
+BFS
+1. L= [v1] trạng thái ban đầu
+2. Node = v1, L= [v2, v3, v4], father [v2, v3, v4] =v1
+3. Node = v2, L=[v3, v4, v7], father[v7] =v2
+4. Node = v3, L= [v4, v7, v8, v6], father[v8, v6]= v3
+5. Node = v4, L= [v7, v8, v6, v5], father[v5] =v4
+6. Node = v7, L=[v8, v6, v5], father[v3] = v7
+7. Node = v8, L=[v6, v5, v9, v10], father[v9, v10] = v8
+8. Node = v6, L=[v5, v9, v10, v12], father[v12]= v6
+9. Node = v5, L=[v9, v10, v12, v14], father[v14] = v5
+10. Node = v9, L=[v10, v12, v14, v11], father[v11]=v9
+11. Node = v10, L=[v12, v14, v11]						
+12, Node = v12, L=[v14, v11, v13], father[v13]= v12
+13. Node = v14, L=[v11, v13] , father[v11] = v14,
+14. Node = v11, L=[v13, v15], father[15, 10] = v11
+15. Node = v13, L=[v15], father[v10, v14] =v13
+16. Node = v15, L=[v16], father[v16]= v15
+17. Node = v16, L=[v17], father[v17]  = v16
+18. Node = v17, L =[v18] , father[v18]= v17
+19. Node = v18 -> end	
+v1 v3 v8 v09 v11 v15 v16 v17 v18
+v1 v4 v5 v14 v11 v15 v16 v17 v18
+
+DFS
+1. L= [v1] trạng thái ban đầu
+2. Node = v1, L = [v4, v3, v2], father[v4, v3,v2] = v1
+3. Node = v4, L = [v5, v3, v2],5father[v5] = v4
+4. Node = v5 , L = [v14, v3, v2],father[v14] = v5
+5. Node = v14, L = [v11, v3, v2], father[v11] = v14
+6. Node = v11, L = [v15, v3, v2], father[v15] = v11
+7. Node = v15, L = [v16, v3, v2], father[v15] = v15
+8. Node = v16, L = [v17, v3, v2],father[v17] = v16
+9. Node = v17, L = [v18, v3, v2], father[v18] = v17
+10. Node = v18 -> end -> stop
+Đường đi ngắn nhất  v1->v4->v5->v14->v11->v15->v16->v17->v18
+UCS 
+1. PQ = {(v1,0)}
+2. PQ = {(v2,50), (v4,300), (v3,350}
+3. PQ = {(v4,300), (v3,350), (v7,650)}
+4. PQ = {(v3,350), (v7,650), (v5,1600)}
+5. PQ = {(v6,450), (v7,650), (v8,1250), (v5,1600)}
+6. PQ = {(v7,650), (v12,1150), (v8,1250), (v5,1600)}
+7. PQ = {(v12,1150), (v8,1250), (v5,1600)}
+8. PQ = {(v8,1250), (v5,1600), (v13,2100)}
+9. PQ = {(v10,1550), (v5,1600), (v9,2040), (v13,2100)}
+10. PQ = {(v5,1600), (v9,2040), (v13,2100)}
+11. PQ = {(v9,2040), (v13,2100), (v14,3000)}
+12. PQ = {(v13,2100), (v14,3000), (v11,3240)}
+13. PQ = {((v14,2700), (v11,3240)}
+14. PQ = {(v11,3240)}
+15. PQ = {(v15,3640)}
+16. PQ = {(v16,4940)}
+17. PQ = {(v17,5710)}
+18. PQ = {(v18,6910)}
+=> Đường đi ngắn nhất là v1->v3->v8->v9->v11->v15->v16->17->18 với chi phí là 6910

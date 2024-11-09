@@ -4,8 +4,7 @@ import argparse
 import os
 
 # set it to bin folder of graphvviz
-os.environ["PATH"] += os.pathsep +'usr/bin'
-
+os.environ["PATH"] += os.pathsep + r'C:\Users\Admin\OneDrive - VNU-HCMUS\2022-2026\Nam 3\AI\lab2\Graphviz\bin'
 
 options = [(1, 0), (0, 1), (1, 1), (0, 2), (2,0)]
 Parent = dict()
