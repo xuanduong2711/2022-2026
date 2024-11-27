@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 emoji==0.5.4
 pydot==1.4.1
+=======
+emoji==0.5.4
+pydot==1.4.1
+>>>>>>> 9ed47507d85a21ebb2ddc4fedf3d53182b4ca3a6
 pyparsing==2.4.5

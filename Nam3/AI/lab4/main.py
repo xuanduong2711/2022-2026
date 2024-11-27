@@ -100,7 +100,10 @@ class Graph:
     def get_adjacent_points(self, point):
         return list(filter(None.__ne__, [edge.get_adjacent(point) for edge in self.edges]))
     
+<<<<<<< HEAD
     
+=======
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
     def can_see(self, start):
         see_list = list()
         cant_see_list = list()
@@ -118,12 +121,17 @@ class Graph:
 
 
                     cant_see_list.append(start)
+<<<<<<< HEAD
                     see_list.append(point) # Giả sủ start đều nhinf thấy moị điểm trên đa giác
+=======
+                    see_list.append(point) # Gia su moi diem tren hinh deu nhin thay duoc
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
 
                     if start in self.get_polygon_points(polygon):
                         polygon_start = self.get_polygon_points(polygon)
                         for poly_point in self.get_polygon_points(polygon):
                                 if poly_point not in self.get_adjacent_points(start):
+<<<<<<< HEAD
                                     cant_see_list.append(poly_point)   # Thêm những điểm không kề nó sẽ vào tập cant_see         
 
                     # Point vs start không thuộc cùng 1 đa giác thì
@@ -139,6 +147,22 @@ class Graph:
         see_set = set(see_list)
         cant_see_set = set(cant_see_list)
         # Loại bỏ đi những điểm không thể nhìn thì sẽ còn lại nhưng điểm nhìn thấy
+=======
+                                    cant_see_list.append(poly_point)          
+
+                    # Point vs start khong nam cung 1 da giac
+                    if point not in polygon_start: 
+                        if not start.can_see(point, edge):
+                            cant_see_list.append(point)
+
+                if point.x < max_point_x and point.x > min_point_x:
+                    if point.y < max_point_y and point.y > min_point_y:
+                        return []
+
+
+        see_set = set(see_list)
+        cant_see_set = set(cant_see_list)
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
         see_list = list(see_set - cant_see_set)
         return see_list
 
@@ -203,11 +227,19 @@ def BFS(graph, start, end):
     frontier.put(start)
     visited = {start}
     parent = {start: None}
+<<<<<<< HEAD
     path = []
+=======
+
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
     while not frontier.empty():
         current = frontier.get()
         
         if current == end:
+<<<<<<< HEAD
+=======
+            path = []
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
             while current:
                 path.append(current)
                 current = parent[current]
@@ -218,16 +250,29 @@ def BFS(graph, start, end):
                 frontier.put(next_node)
                 visited.add(next_node)
                 parent[next_node] = current
+<<<<<<< HEAD
     return path
+=======
+    return []
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
 
 def DFS(graph, start, end):
     frontier = [(start, 0)]
     visited = {start}
     parent = {start: None}
+<<<<<<< HEAD
     path = []
     while frontier:
         current, _ = frontier.pop()       
         if current == end:
+=======
+
+    while frontier:
+        current, _ = frontier.pop()
+        
+        if current == end:
+            path = []
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
             while current:
                 path.append(current)
                 current = parent[current]
@@ -245,7 +290,11 @@ def DFS(graph, start, end):
             frontier.append((next_node, _))
             visited.add(next_node)
             parent[next_node] = current
+<<<<<<< HEAD
     return path
+=======
+    return []
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
 
 def UCS(graph, start, end):
     frontier = PriorityQueue()
@@ -336,24 +385,37 @@ def main():
         print("3. BFS")
         print("4. DFS")
         print("5. UCS")
+<<<<<<< HEAD
         thuat_toan = int(input("Nhập lựa chọn của bạn: "))
 
         # Khởi chạy thuật toán
         result = []
         if thuat_toan == 1:
             algorithm_name = 'A*'
+=======
+        option = int(input("Nhập lựa chọn của bạn: "))
+
+        # Khởi chạy thuật toán
+        result = []
+        if option == 1:
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
             a = search(graph, start, goal, a_star)
             while a:
                 result.append(a)
                 a = a.pre
             result.reverse()
+<<<<<<< HEAD
         elif thuat_toan == 2:
             algorithm_name = 'Greedy'
+=======
+        elif option == 2:
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
             a = search(graph, start, goal, greedy)
             while a:
                 result.append(a)
                 a = a.pre
             result.reverse()
+<<<<<<< HEAD
         elif thuat_toan == 3:
             algorithm_name = 'BFS'
             result = BFS(graph, start, goal)
@@ -362,29 +424,54 @@ def main():
             result = DFS(graph, start, goal)
         elif thuat_toan == 5:
             algorithm_name = 'UCS'
+=======
+        elif option == 3:
+            result = BFS(graph, start, goal)
+        elif option == 4:
+            result = DFS(graph, start, goal)
+        elif option == 5:
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
             _, result = UCS(graph, start, goal)
         else:
             print("Lựa chọn không hợp lệ!")
             return
 
+<<<<<<< HEAD
         # In kết quả
         plt.figure()
         plt.title(f"Đường đi của thuật toán {algorithm_name}")
         plt.plot([start.x], [start.y], 'bo', label="Start")
         plt.plot([goal.x], [goal.y], 'go', label="Goal")
+=======
+        # Kiểm tra nếu không có đường đi
+        if not result:
+            print("Không tìm thấy đường đi!")
+            return
+
+        # In kết quả
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
         print("Path found:")
         print(" -> ".join(map(str, result)))
         result.reverse()
         print_res = [[point, point.polygon_id] for point in result]
         print(*print_res, sep=' ->')
+<<<<<<< HEAD
 
+=======
+        plt.figure()
+        plt.plot([start.x], [start.y], 'ro', label="Start")
+        plt.plot([goal.x], [goal.y], 'go', label="Goal")
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
 
         for point in graph.get_points():
             x.append(point.x)
             y.append(point.y)
         plt.plot(x, y, 'ro')
+<<<<<<< HEAD
         plt.plot(start.x, start.y, 'bo') 
         plt.plot(goal.x, goal.y, 'go') # Node Goal sẽ được tô màu xanh lục cho dễ nhìn
+=======
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
         for i in range(1, len(poly_list) - 1):
             coord = list()
             for point in poly_list[i]:
@@ -398,10 +485,15 @@ def main():
         for point in result:
             x.append(point.x)
             y.append(point.y)
+<<<<<<< HEAD
         if x == None:
             plt.plot(label= "No path") 
 
         # Chú thích kí hiệu đương đi cho người đọc dễ hiểu
+=======
+        if point == None:
+            plt.plot(label= "No path") 
+>>>>>>> 6b73a69cef9ac34dd7299f51c1ca9fa1f9f8ce6b
         plt.plot(x, y, 'b', linewidth=2.0, label="Path")
         plt.legend()
         plt.show()

@@ -16,6 +16,7 @@ def greedy_best_first_search_hierarchical(graph, start, goal, heuristic, region_
     # Priority queue to hold nodes to explore, sorted by heuristic value
     priority_queue = []
     heapq.heappush(priority_queue, Node(start, heuristic[start]))
+
     visited = set()  # To keep track of visited nodes
 
     # Path dictionary to track the explored paths
@@ -38,6 +39,12 @@ def greedy_best_first_search_hierarchical(graph, start, goal, heuristic, region_
                 if neighbor not in path:
                     path[neighbor] = current_node
 
+        # Explore neighbors in other regions after same-region neighbors
+        for neighbor in graph[current_node]:
+            if neighbor not in visited and region_map[neighbor] != current_region:
+                heapq.heappush(priority_queue, Node(neighbor, heuristic[neighbor]))
+                if neighbor not in path:
+                    path[neighbor] = current_node
 
     return None  # If no path is found
 
